@@ -7,13 +7,12 @@ class UserStorage {
         name: ["조연우", "나개발", "김팀장"],
     };
 
-    static getUsers(...fields) {
-        return this.#users;
-        // const users = this.#users;
+    static getUsers(id, psword) {
+        const users = this.#users;
         // const newUsers = fields.reduce((newUsers, field) => {
         //     console.log(newUsers, field);
         // }, {});
-        // return;
+        return //이부분;
     }
 }
 
