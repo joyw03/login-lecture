@@ -14,11 +14,27 @@ const output ={
 
 const process = {
     login: (req, res) => {
-        const id = req.body.id;
-        const psword = req.body.psword;
-        
-        const user = UserStorage.getUsers(id, psword)
-        const response = {};
+        const user = new User(req.body);
+        const response = user.login();
+        return res.json(response);  
+    },
+};
+
+module.exports = {
+    output,
+    process,
+};
+
+
+
+
+        // const id = req.body.id;
+        // const psword = req.body.psword;
+        // // console.log(id);
+        // // console.log(psword);
+        // const users = UserStorage.getusers("id", "psword");
+
+        // const response = {};
         // if (users.id.includes(id)) {
         //     const idx = users.id.indexOf(id);
         //     if (users.psword[idx] === psword) {
@@ -27,13 +43,6 @@ const process = {
         //     }
         // }
 
-        response.success = false;
-        response.msg = "로그인에 실패하셨습니다."
-        return res.json(response);  
-    }
-};
-
-module.exports = {
-    output,
-    process,
-};
+        // response.success = false;
+        // response.msg = "로그인에 실패하셨습니다.";
+        // return res.json(response);  

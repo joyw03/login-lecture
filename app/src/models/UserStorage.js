@@ -7,12 +7,27 @@ class UserStorage {
         name: ["조연우", "나개발", "김팀장"],
     };
 
-    static getUsers(id, psword) {
+    static getUsers(...fields) {
         const users = this.#users;
-        // const newUsers = fields.reduce((newUsers, field) => {
-        //     console.log(newUsers, field);
-        // }, {});
-        return //이부분;
+        const newUsers = fields.reduce((newUsers, field) => {
+            if (users.hasOwnProperty(field)) {
+                newUsers[field] = users[field];
+            }
+            return newUsers;
+        }, {});
+        return newUsers; //이부분
+    }
+
+    static getUserInfo(id) {
+        const users = this.#users;
+        const idx = users.id.indexOf(id);
+        const usersKeys = Object.keys(users); // => [id, psword, name]
+        const userInfo = Object.keys(users).reduce((newUser, info) => {
+            newUser[info] = users[info][idx];
+            return newUser;
+        }, {});
+
+        return userInfo;
     }
 }
 
